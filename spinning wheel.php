@@ -279,7 +279,7 @@
     ?>
 
 
-        <div align="center">
+        <div alig="center">
             <h1>Winwheel.js example wheel</h1>
             <p><?php getField("100001","NAME"); ?>
                 
@@ -290,7 +290,7 @@
             <br />
             <p>Choose a power setting then press the Spin button. You will be alerted to the prize won when the spinning stops.</p>
             <br />
-            <table cellpadding="0" cellspacing="0" border="0">
+            <table cellpadding="0" cellspacing="0" borde="0">
             <tr>
                 <td>
                     <div class="power_controls">
@@ -299,7 +299,7 @@
                         <table class="power" cellpadding="10" cellspacing="0">
 
                             <tr>
-                                <th width="78" align="center">Select Category</th>
+                                <th width="78" alig="center">Select Category</th>
                             </tr>
                             <?php buildCategoryList() ?>
  
@@ -310,9 +310,9 @@
                         &nbsp;&nbsp;<a href="#" onClick="resetWheel(); return false;">Play Again</a><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(reset)
                     </div>
                 </td>
-                <td width="500" height="700" class="the_wheel" align="center" valign="center">
+                <td width="500" height="700" class="the_wheel" alig="center" valign="center">
                     <canvas id="canvas" width="500" height="500">
-                        <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
+                        <p style="{color: white}" alig="center">Sorry, your browser doesn't support canvas. Please try another.</p>
                     </canvas>
                 </td>
             </tr>
