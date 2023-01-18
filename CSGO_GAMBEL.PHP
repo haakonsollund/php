@@ -93,10 +93,20 @@
     if ($csgowildlilly == 100) {
         echo '<img src="https://s-wiki.cs.money/wiki_gE3TNWp_preview.png" alt="">';
     }
-    
+
 
     
     
+    
+    $path = 'cards/';
+
+    $kortstokk = scandir($path);
+
+    $random_tall = rand(0,count($kortstokk)-1);
+
+    $trukket_kort = $kortstokk[$random_tall];
+
+    echo "<img src='cards/$trukket_kort'>";
 
     ?>
 
