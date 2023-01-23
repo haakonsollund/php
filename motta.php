@@ -1,2 +1,2 @@
 <?php
-echo $_GET["farge"];
+echo $_GET["$farge"];
