@@ -99,3 +99,98 @@
 	  -webkit-transform: translateY(0%);
 	}
   }
+
+  .bilde_div{
+	width:100px ;
+	height:100px ;
+	display: flex;
+	flex-direction: row;
+	padding: 8px;
+  }
+
+  .bilder{
+	width:100% ;
+	height:100% ;
+  }
+
+  .bilde{
+	width: 100px;
+	height: 100px;
+  }
+
+.all{
+	background-color: rgb(49, 119, 194);
+	width:30% ;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	flex-direction: column;
+	margin-left: 35%;
+	height: 100vh;
+	height:100% ;
+}
+.brukere{
+	width: 15%;
+	height:100% ;
+    background-color: rgba(39, 92, 152, 1);
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 0px 2px rgba(0,0,0,1);
+	display:flex ;
+	justify-content:center ;
+	align-items:center ;
+	align-content:center ;
+	flex-direction:column ;
+	
+
+
+}
+
+.logo{
+	display: flex;
+	justify-content:center ;
+	
+}
+
+.boks{
+	display: flex;
+	justify-content: center;
+}
+
+.kommentarer{
+	display: flex;
+	margin-left: 80%;
+	flex-direction: column;
+	
+}
+
+.kommentar_txt{
+	color: aliceblue;
+
+
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+.profil_txt {
+  font-family: 'Bebas Neue', cursive;
+  	margin: 11px;
+  background-image: linear-gradient(rgba(17, 50, 67, 1), rgba(17, 50, 67, 1));
+  background-size: 100% 10px;
+  background-repeat: no-repeat;
+  background-position: 100% 0%;
+   transition: background-size .7s, background-position .5s ease-in-out;
+   display: flex;
+   flex-direction: row;
+}
+
+.profil_txt:hover {
+  background-size: 100% 100%;
+  background-position: 0% 100%;
+  transition: background-position .7s, background-size .5s ease-in-out;
+}
+
+
+

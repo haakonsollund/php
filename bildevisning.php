@@ -1,67 +1,77 @@
 <?php
 session_start();
-if(isset($_POST["logout"])){
-    session_unset();
-    session_destroy();}
-
-
-include "auth.php"
-
+include "auth.php";
+include "azure.php";
 ?>
-
-    
-   
-
-
-
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bilde</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <div class="logo"> 
-        <?php
-        echo"<img src='TRADEIT-removebg-preview.png' alt=''>";
-
-        ?>
+    <div class='innhold'>
+        <div class='bilde'>
+            <?php
+                $media_id_fra_link = $_GET['media_id']; # id fra link på bilde
+ 
+                $sql = "SELECT * FROM media WHERE idmedia='$media_id_fra_link' ";
+                $resultat = $con->query($sql); 
+ 
+                $rad = $resultat->fetch_assoc();
+                    $idmedia = $rad['idmedia'];  
+                    $dato = $rad['date'];  
+                    $media_navn = $rad['media_navn'];  
+                
+                    echo "<img class='stort_bilde' src='img/$media_navn'> ";
+            ?>
+        </div>
+        
+        <div class='kommentarer'>
+            <?php 
+                $sql = "SELECT * FROM media_kommentar JOIN bruker ON media_kommentar.idbruker=bruker.idbruker WHERE idmedia='$media_id_fra_link' ORDER BY date DESC";
+                $resultat_media_kommentar = $con->query($sql); # henter ut fra DB
+                
+                while($kom = $resultat_media_kommentar->fetch_assoc()) { # loop gjennom alle brukere
+                    $innlegg_tekst = $kom['text']; 
+                    $dato_opprettet = $kom['date'];
+                    $brukernavn = $kom['brukernavn'];
+                    $fornavn = $kom['fornavn'];
+                    $etternavn = $kom['etternavn'];
+                    
+                    echo "<p class = 'kommentar_txt'>$fornavn $etternavn: $innlegg_tekst, $dato_opprettet</p><br>";
+                }
+ 
+                echo "
+                <form method='POST'>
+                    <input name='tekst_kommentar' value='kommentar'>
+                    <input name='idmedia' type='hidden' value='$media_id_fra_link'> 
+                    <input type='submit' name='submit_kommentar' value='Svar'>
+                </form>
+                ";  
+ 
+                if(isset($_POST["submit_kommentar"])) { # hvis svar knapp er trykket
+                    $tekst = $_POST["tekst_kommentar"];
+                    $idmedia = $_POST["idmedia"];
+                    $id = $_SESSION['login_id'];
+ 
+                    $sql = "INSERT INTO media_kommentar (text, idbruker, idmedia, date) VALUES ('$tekst','$id', $media_id_fra_link, now() )";
+                  
+                    # sjekk om feil eller ble lagt til
+                    if($con->query($sql)) {
+                        echo "Kommentar ble lagt til i databasen";
+                    } else {
+                        echo "Feilmelding: $con->error";
+                    }
+                }
+            ?>
+        </div>
     </div>
-<div class='boks'>
-
-<div class='brukere'>
-    <?php include "meny.php"; 
-        include "azure.php";
-        
-        $sql = "SELECT idbruker, brukernavn FROM bruker ";
-        $resultat = $con->query($sql); # henter ut fra DB
- 
-        while($rad = $resultat->fetch_assoc()) { # loop gjennom alle brukere
-            $idbruker = $rad['idbruker'];  
-            $brukernavn = $rad['brukernavn'];
- 
-            echo "<p class = 'profil_txt'><a href='profil.php?bruker_id=$idbruker'>$brukernavn</a></p>";
-        }
-        
-            
-
-        ?>
-
-            <form method="POST">
-            <input type="submit" name="logout" value="logg ut">
-            </form>
-
-
-
-
-
-</div>   
-
-
+    
 </body>
 </html>
 <div class="backwrap gradient">

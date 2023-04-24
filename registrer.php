@@ -8,7 +8,7 @@
     bio
     <br><input type="text" name="bio"><br>
     passord
-    <br><input type="text" name="passord"><br>
+    <br><input type="password" name="passord"><br>
     epost
     <br><input type="text" name="epost"><br>
     tlf
@@ -34,7 +34,7 @@ if (isset($_POST["leggtil"])){
     
     $sql = "INSERT INTO bruker (brukernavn, fornavn, etternavn, bio, passord, epost, tlf) 
     VALUES ('$brukernavn','$fornavn','$etternavn','$bio','$passord','$epost','$tlf')";
-
+    header("location: loginn.php");
 if ($con->query($sql)){
  echo "lag til i databasem";
 
